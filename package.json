@@ -1,0 +1,22 @@
+{
+  "description": "GAasService",
+  "devDependencies": {
+    "express": "^4.13.3"
+  },
+  "directories": {},
+  "keywords": [
+    "Genetic Algorithm",
+    "NodeJS",
+    "Evolutionary Algorithm",
+    "Search Problems"
+  ],
+  "author": "Deuslirio Junior",
+  "license": "MIT",
+  "name": "ga_as_service",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "version": "1.0.0"
+}

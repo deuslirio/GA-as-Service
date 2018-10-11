@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>N-Queens GA - A Simple Genetic Algorithm to solve n-queens problem</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+		<link rel="stylesheet" href="assets/css/style.css" >
+  </head>
+  <body class="container">
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark navbar-dark">
+  <div class="container">
+  <a class="navbar-brand" href="#">N-Queen GA</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="#" data-toggle="modal" data-target=".bd-example-modal-sm">Explanation</a>
+    </div>
+  </div>
+  </div>
+</nav>
+
+
+	<div class="row" id="content">
+		<div class="col-12 col-md-8">
+			<div>
+				<div id="plot" style="text-align: center"><canvas id="stage" style="border:1px solid #d3d3d3;"></div>
+				<div id="log"></div>
+			</div>
+		</div>
+		<div class="col-12 col-md-4">
+			<div class="card border-light">
+			  <div class="card-header">Options</div>
+			  <div class="card-body">
+
+				<form>
+				<center><b>Algorithm</b></center>
+				<div class="row" id="content">
+					<div class="col-12 col-md-6">
+						<div class="form-group">
+						<label for="alphaInput">Population size</label>
+						<input type="text" class="form-control" id="population_size" placeholder="100">
+						</div>
+					</div>
+
+					<div class="col-12 col-md-6">
+						<div class="form-group">
+						<label for="epsilonInput">Mutation rate</label>
+						<input type="text" class="form-control" id="mutation_rate" placeholder="0.05">
+						</div>
+					</div>
+					<div class="col-12 col-md-6">
+						<div class="form-group">
+							<label for="maxIntInput">Crossover rate</label>
+							<input type="text" class="form-control" id="crossover_rate" placeholder="0.80">
+							</div>
+					</div>
+
+					<div class="col-12 col-md-6">
+						<div class="form-group">
+							<label for="delayInput">Max. Generations</label>
+							<input type="text" class="form-control" id="max_generations" placeholder="200">
+							</div>
+					</div>
+
+					<div class="col-12 col-md-6">
+						<div class="form-group">
+							<label for="delayInput">K-tournament</label>
+							<input type="text" class="form-control" id="k_tournament" placeholder="3">
+						</div>
+					</div>
+
+					<div class="col-12 col-md-6">
+						<div class="form-group">
+							<label for="delayInput">N-queens</label>
+							<input type="text" class="form-control" id="nqueens" placeholder="8">
+						</div>
+					</div>
+
+				</div>
+					<!-- <center><b>Animation</b></center> -->
+					<!-- <div class="row" id="content">
+						<div class="col-12 col-md-6">
+							<div class="form-group">
+								<label for="delayInput">Delay</label>
+								<input type="text" class="form-control" id="delay" placeholder="100">
+							</div>
+						</div>
+
+						<div class="col-12 col-md-6">
+							<div class="form-group">
+								<label for="delayInput">Delay</label>
+								<input type="text" class="form-control" id="delay" placeholder="100">
+							</div>
+						</div>
+
+					</div> -->
+
+				  <button type="button" class="btn btn-primary" onclick="solve()">Solve</button>
+				  <br />
+				</form>
+
+			  </div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-sm">
+		<div class="modal-content">
+		  <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Explanation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+				<p>This page presents a simple Genetic Algorithm implemented to solve the n-queens problem, which is a very popular combinatorial optimization problem.</p>
+				<p>Use 'Options' section to set some parameters and see their impact on the optimization process as well as animation behavior.</p>
+				<p>Remember we are talking about a pure JavaScript toy running in your web browser. It is regarding to didactic material with no intention to be performatic.</p>
+      </div>
+		</div>
+	  </div>
+	</div>
+
+	<div class="fixed-bottom bg-light" id="footer">
+		<div class="container">I4soft - Intelligence for Software</div>
+	</div>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+		<script src="assets/js/plot.js"></script>
+		<script src="assets/js/main.js"></script>
+  </body>
+</html>
