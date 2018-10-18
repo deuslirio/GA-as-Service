@@ -4,9 +4,8 @@ const bodyParser = require('body-parser');
 const app = express();
 var algs = require('./ga.js');
 var getRawBody = require('raw-body')
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 // app.use(cors())
 // using SendGrid's v3 Node.js Library
@@ -37,14 +36,14 @@ app.use(bodyParser.urlencoded({
 //
 // })
 
-app.get("/newPop", function(req, res){
+app.post("/newPop", function(req, res){
 const gen = {
-    pop:  JSON.parse(req.query.pop),
-    mr:  JSON.parse(req.query.mr),
-    cr:  JSON.parse(req.query.cr),
-    k:  JSON.parse(req.query.k),
+    pop:  JSON.parse(req.body.pop),
+    mr:  JSON.parse(req.body.mr),
+    cr:  JSON.parse(req.body.cr),
+    k:  JSON.parse(req.body.k),
   };
- // console.log(gen.pop);
+ // console.log(req.body);
 res.end(JSON.stringify(algs.genetic_algorithm(gen.pop, gen.mr, gen.cr, gen.k)));
 console.log(new Date());
 })

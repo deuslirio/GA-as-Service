@@ -74,7 +74,7 @@ function evaluate(chromosome){
 function runOneGeneration() {
       // console.log("clicou")
       // console.log(ga.population)
-      $.get("/newPop", {
+      $.post("/newPop", {
         pop:JSON.stringify(ga.population),
         mr: JSON.stringify(ga.mutationRate),
         cr: JSON.stringify(ga.crossoverRate),
@@ -144,7 +144,7 @@ function solve(){
     let cx = $('#crossover_rate').val()
     let maxg = $('#max_generations').val()
     // let delay = $('#delay').val()
-    delay=1000
+    delay=2000
     let ktournament = $('#k_tournament').val()
     let nqueens = $('#nqueens').val()
 
